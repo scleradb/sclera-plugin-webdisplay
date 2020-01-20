@@ -1,0 +1,10 @@
+Sclera - Web Display
+Copyright 2012 - 2020 Sclera, Inc.
+ 
+This product uses the following third-party components:
+
+Javalin - Apache License v2.0 - https://www.apache.org/licenses/LICENSE-2.0
+Logback Classic - Eclipse Public License v1.0 - http://logback.qos.ch/license.html
+D3.js - BSD 3-Clause "New" or "Revised" License - https://opensource.org/licenses/BSD-3-Clause
+D3-Legend - Apache License v2.0 - https://www.apache.org/licenses/LICENSE-2.0
+Bootstrap 4 - MIT License - https://github.com/twbs/bootstrap/blob/master/LICENSE
