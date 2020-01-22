@@ -4,6 +4,8 @@ description := "Plot Sclera query results in a web-browser"
 
 version := "4.0-SNAPSHOT"
 
+homepage := Some(url("https://github.com/scleradb/sclera-plugin-webdisplay"))
+
 organization := "com.scleradb"
 
 organizationName := "Sclera, Inc."
