@@ -36,5 +36,5 @@ class WebDisplayService extends DisplayService {
 /** Companion object. Stores the properties */
 object WebDisplayService {
     /** Identifier for the service */
-    val id: String = "WEBSERVER"
+    val id: String = "WEBDISPLAY"
 }
