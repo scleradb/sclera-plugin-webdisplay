@@ -52,20 +52,24 @@
             const d = JSON.parse(msg.data);
             if( d.type === "data" ) {
                 if( renderer ) renderer.update(d.data);
-            } else { /* new plot/table */
-                if( d.type === "plot" ) {
-                    const plot = d.plot;
-                    renderer = sclera.facetedplot(
-                        plot.name, plot.layout, plot.trans,
-                        plot.axes, plot.facet, plot.subplots
-                    );
-                } else if( d.type === "table" ) {
-                    renderer = sclera.table();
-                } else return;
+            } else { /* new text/plot/table */
+                if( d.type === "text" ) {
+                    sclera.addText(d.text);
+                } else {
+                    if( d.type === "plot" ) {
+                        const plot = d.plot;
+                        renderer = sclera.facetedplot(
+                            plot.name, plot.layout, plot.trans,
+                            plot.axes, plot.facet, plot.subplots
+                        );
+                    } else if( d.type === "table" ) {
+                        renderer = sclera.table();
+                    } else return;
 
-                renderer.setColumns(d.columns);
+                    renderer.setColumns(d.columns);
+                    sclera.addCard(renderer, d.title);
+                }
 
-                sclera.addCard(renderer, d.title);
                 window.scrollTo(0, document.body.scrollHeight);
             }
         };

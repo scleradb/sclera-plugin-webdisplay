@@ -31,6 +31,45 @@ body {
     margin-top: 30px;
 }
 
+.sclera .display .sclera-html {
+    margin: 10px;
+}
+
+.sclera .display .sclera-html h1,
+.sclera .display .sclera-html h2,
+.sclera .display .sclera-html h3,
+.sclera .display .sclera-html h4,
+.sclera .display .sclera-html h5,
+.sclera .display .sclera-html h6 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.sclera .display .sclera-html h1 {
+    font-size: 2rem;
+}
+
+.sclera .display .sclera-html h2 {
+    font-size: 1.5rem;
+}
+
+.sclera .display .sclera-html h3 {
+    font-size: 1.25rem;
+}
+
+.sclera .display .sclera-html h4 {
+    font-size: 1rem;
+}
+
+.sclera .display .sclera-html h5 {
+    font-size: 0.75rem;
+}
+
+.sclera .display .sclera-html h6 {
+    font-size: 0.5rem;
+}
+
 .sclera .display .plot .tooltip {
     padding-top: 5px;
     padding-bottom: 5px;

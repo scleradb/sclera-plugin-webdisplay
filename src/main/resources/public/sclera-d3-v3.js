@@ -17,6 +17,11 @@
 
 const sclera = { "version": "1.0" };
 
+sclera.addText = function(html) {
+    d3.select("#display")
+        .append("div").attr("class", "sclera-html col-6 col-12").html(html);
+}
+
 sclera.addCard = function(renderer, title) {
     const card = d3.select("#display")
         .append("div").attr("class", "card col-6 col-12");
