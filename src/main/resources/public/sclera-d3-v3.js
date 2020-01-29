@@ -17,19 +17,15 @@
 
 const sclera = { "version": "1.0" };
 
-sclera.addPlot = function(plot) {
-    const renderer = sclera.facetedplot(
-        plot.name, plot.layout, plot.trans, plot.axes, plot.facet, plot.subplots
-    );
-
+sclera.addCard = function(renderer, title) {
     const card = d3.select("#display")
         .append("div").attr("class", "card col-6 col-12");
 
     const cardBody = card.append("div").attr("class", "card-body")
         .call(renderer.render);
 
-    if( plot.layout.title ) {
-       cardBody.append("p").attr("class", "card-title").text(plot.layout.title);
+    if( title ) {
+       cardBody.append("p").attr("class", "card-title").text(title);
     }
 
     return renderer;
@@ -2976,4 +2972,102 @@ sclera.style = function(name, aes) {
         "}",
       "/* ]]> */"
     ].join(" ");
+};
+
+sclera.table = function() {
+    const table = {};
+
+    const tcontainer = d3.select(document.createElement("div"))
+        .attr("class", "table-container");
+
+    const tmain = tcontainer
+        .append("table")
+        .attr("class", "table");
+
+    const thead = tmain.append("thead")
+        .attr("class", "thead-light");
+    const theadr = thead.append("tr");
+
+    const tbody = tmain.append("tbody");
+
+    const tcaption = tmain.append("caption")
+        .attr("align", "bottom")
+        .text("(0 rows)");
+
+    table.setColumns = function(columns) {
+        table.columns = columns;
+        table.indexCol = columns.findIndex(function(col) {
+            return col.name == "#";
+        });
+
+        theadr.selectAll(".th")
+            .data(columns).enter()
+            .append("th")
+            .attr("scope", "col")
+            .classed("sclera-indexcol", function(_, i) {
+                return (i == table.indexCol);
+            })
+            .text(function(col) { return col.name; });
+
+        if( table.indexCol >= 0 ) theadr.on("click", function(_, i) {
+            const h = d3.select(this);
+
+            if( h.classed("sort-asc") ) {
+                h.classed("sort-asc", false);
+                h.classed("sort-desc", true);
+                tbody.sort(function(a, b) {
+                    return d3.descending(a[i], b[i]);
+                });
+            } else if( h.classed("sort-desc") ) {
+                h.classed("sort-desc", false);
+
+                const n = table.indexCol;
+                tbody.sort(function(a, b) {
+                    return d3.ascending(a[n], b[n]);
+                });
+            } else {
+                h.classed("sort-asc", true);
+                tbody.sort(function(a, b) {
+                    return d3.ascending(a[i], b[i]);
+                });
+            }
+        });
+    };
+
+    table.render = function(resultContainer) {
+        resultContainer.append(function() { return tcontainer.node(); });
+    };
+
+    let nRows = 0;
+    table.update = function(rows) {
+        tbody.selectAll("tr")
+            .data(rows, function(row, i) {
+                return (table.indexCol < 0) ? i : row[table.indexCol];
+            }).enter()
+            .append("tr")
+            .selectAll("td")
+            .data(function(row) { return row; }).enter()
+            .append("td")
+            .classed("sclera-indexcol", function(_, i) {
+                return (i == table.indexCol);
+            })
+            .text(function(v, i) {
+                if( v === null )
+                    return "null";
+                if( table.columns[i].type === "time" )
+                    return new Date(+v).toLocaleTimeString();
+                if( table.columns[i].type === "date" )
+                    return new Date(+v).toLocaleDateString();
+                if( table.columns[i].type === "datetime" )
+                    return new Date(+v).toLocaleString();
+                return v;
+            });
+
+        nRows += rows.length;
+        tcaption.text("(" +
+            nRows + " " + ((nRows == 1) ? "row" : "rows") +
+        ")");
+    };
+
+    return table;
 };

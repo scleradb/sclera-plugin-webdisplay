@@ -40,6 +40,27 @@ body {
     background-color: black;
 }
 
+.sclera .display .table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #F5F5F5;
+}
+
+.sclera .display .table {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.sclera .display .table thead th {
+    position: sticky;
+    top: 0;
+}
+
+.sclera .display .table caption {
+    white-space: nowrap;
+    padding: 0.75rem;
+}
+
 .sclera .display .card {
     position: static;
     padding: 10px;
@@ -52,8 +73,10 @@ body {
 
 .sclera .display .card-body .card-title {
     font-size: 10px;
+    font-weight: bold;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .navbar {
