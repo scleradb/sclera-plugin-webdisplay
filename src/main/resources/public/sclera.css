@@ -83,11 +83,11 @@ body {
     max-height: 300px;
     overflow-y: auto;
     background-color: #F5F5F5;
+    font-size: 0.8rem;
 }
 
 .sclera .display .table {
     margin-bottom: 0;
-    font-size: 12px;
 }
 
 .sclera .display .table thead th {
@@ -111,8 +111,6 @@ body {
 }
 
 .sclera .display .card-body .card-title {
-    font-size: 10px;
-    font-weight: bold;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 0;
