@@ -6,4 +6,4 @@ Specifically, you can use a very expressive graphics language to plot the result
 
 Unlike `ggplot2`, the resulting plots are interactive, and can display streaming data in a continuous manner. Moreover, the specification language is well-integrated with [ScleraSQL](https://scleradb.com/docs/sclerasql/sqlintro/).
 
-For details and examples on using these constructs, please refer to the [ScleraSQL Visualization Reference](https://scleradb.com/docs/sclerasql/visualization/) document.
+For details and examples on using these constructs, please refer to the [ScleraSQL Visualization Reference](https://scleradb.com/docs/sclerasql/visualization/) document. A live demonstration of the supported visualizations and the corresponding ScleraSQL code is available at the [ScleraViz website](https://scleraviz.herokuapp.com).
